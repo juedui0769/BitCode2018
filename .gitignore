@@ -1,3 +1,6 @@
 .idea/
 target/
 *.iml
+
+student.json
+datamap.json
