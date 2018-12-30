@@ -5,6 +5,9 @@ import java.lang.reflect.Field;
 /**
  * 2018年12月29日21:08:23
  * from `crt-apiinterface`
+ *
+ * `com.wxg.reflect.ReflectUtilTest` , 是测试， 有弊端： 只能设置`String`类型的值。
+ * 正确的方式是 {@link ReflectUseApacheCommonsLang}
  */
 public final class ReflectUtil {
     /**

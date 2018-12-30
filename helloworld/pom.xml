@@ -52,7 +52,18 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.drinkjava2</groupId>
+            <artifactId>jsqlbox</artifactId> <!-- 不带后缀，这是Java6版 -->
+            <version>2.0.5</version> <!--或当前Maven最高版-->
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.196</version>
+            <!--<scope>test</scope>-->
+        </dependency>
     </dependencies>
 
 </project>
