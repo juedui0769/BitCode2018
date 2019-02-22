@@ -12,6 +12,9 @@ import java.util.Timer;
 
 /**
  * Post To A Server
+ *
+ * 搭建 server 的方式参考：
+ * https://github.com/juedui0769/StudyNotes2018/blob/master/129_Server_Moco.md
  */
 public class PostToAServer {
 
