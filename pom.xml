@@ -13,6 +13,7 @@
         <module>springMvc</module>
         <module>temp</module>
         <module>localTest</module>
+        <module>mybatis-plus</module>
     </modules>
 
 
