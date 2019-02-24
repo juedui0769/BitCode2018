@@ -29,7 +29,10 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- 以下 jar 在本地Maven仓库 -->
+        <!-- 以下 jar 在本地Maven仓库
+
+        经测试，"云效私有仓库"无法在外界使用，应该只能在"云效"平台中使用。(2019年2月24日)
+        -->
         <dependency>
             <groupId>com.wxg.daily</groupId>
             <artifactId>page-catch</artifactId>
