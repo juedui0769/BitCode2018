@@ -64,6 +64,8 @@ public class PostToAServer {
 //        client.cache().close();                             //清除cache
         client.dispatcher().executorService().shutdown();   //清除并关闭线程池
         client.connectionPool().evictAll();                 //清除并关闭连接池
+
+        client = null;
     }
 
     @Test

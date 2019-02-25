@@ -51,5 +51,22 @@ public class BaiduTranslateResult {
         public void setDst(String dst) {
             this.dst = dst;
         }
+
+        @Override
+        public String toString() {
+            return "TransResult{" +
+                    "src='" + src + '\'' +
+                    ", dst='" + dst + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "BaiduTranslateResult{" +
+                "from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", trans_result=" + trans_result +
+                '}';
     }
 }

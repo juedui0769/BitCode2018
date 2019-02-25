@@ -1,16 +1,28 @@
 package com.wxg.baidu.fanyi;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.wxg.baidu.fanyi.exception.BaiduFanyiException;
+import com.wxg.baidu.fanyi.info.BaiduTranslateFields;
+import com.wxg.baidu.fanyi.info.BaiduTranslateResult;
 import com.wxg.baidu.fanyi.info.SecretInfo;
 import com.wxg.baidu.fanyi.official.TransApi;
+import com.wxg.okhttp.util.ClientUtils;
+import com.wxg.socket.old.Client;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 public class BaiduFanyi {
+
+    private static final String baiduTranslatUrl = "http://api.fanyi.baidu.com/api/trans/vip/translate";
 
     private static volatile BaiduFanyi instance;
 
@@ -51,9 +63,59 @@ public class BaiduFanyi {
         return instance == null ? false : true;
     }
 
+    /**
+     * 从官网下载的demo： 此方法调用的是官方的样例
+     * @param query
+     * @param languageTo
+     * @return
+     */
     public String invokeOfficial(String query, String languageTo) {
         TransApi transApi = new TransApi(secretInfo.getAppId(), secretInfo.getSecretKey());
         return transApi.getTransResult(query, "auto", languageTo);
+    }
+
+    /**
+     * 通过 okhttp 调用“百度翻译API”
+     * {@link ClientUtils#destroy()} 需要注意一下： 清理client！
+     *
+     * @param query
+     * @param languageTo
+     * @return
+     */
+    public BaiduTranslateResult invokeByOkhttp(String query, String languageTo) {
+        BaiduTranslateFields fields
+                = new BaiduTranslateFields(query, languageTo, secretInfo);
+        FormBody formBody = new FormBody.Builder()
+//                .add("q", fields.getEncodeQuery())
+                .add("q", fields.getQ())
+                .add("from", fields.getFrom())
+                .add("to", fields.getTo())
+                .add("appid", fields.getAppid())
+                .add("salt", fields.getSalt())
+                .add("sign", fields.md5Sign())
+                .build();
+        Request request = new Request.Builder()
+                .url(baiduTranslatUrl)
+                .post(formBody)
+                .build();
+
+        OkHttpClient client = ClientUtils.getClient();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpectd code " + response);
+            }
+
+            BaiduTranslateResult result
+                    = JSON.parseObject(response.body().string(), new TypeReference<BaiduTranslateResult>(){});
+
+//            System.out.println(result);
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**

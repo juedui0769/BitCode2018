@@ -1,11 +1,14 @@
 package com.wxg.okhttp;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.google.common.base.Charsets;
 import com.wxg.baidu.fanyi.BaiduFanyi;
 import com.wxg.baidu.fanyi.info.BaiduTranslateFields;
+import com.wxg.baidu.fanyi.info.BaiduTranslateResult;
 import com.wxg.baidu.fanyi.info.SecretInfo;
 import com.wxg.baidu.fanyi.util.FanyiLang;
+import com.wxg.okhttp.util.ClientUtils;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -17,7 +20,9 @@ import java.io.IOException;
  */
 public class PostToBaiduFanyi {
 
-    private final OkHttpClient client = new OkHttpClient();
+    private static final String baiduTranslatUrl = "http://api.fanyi.baidu.com/api/trans/vip/translate";
+
+    private OkHttpClient client = ClientUtils.getClient();
 
     private SecretInfo secretInfo;
 
@@ -30,14 +35,12 @@ public class PostToBaiduFanyi {
         secretInfo = baiduFanyi.getSecretInfo();
     }
 
-    public void run() throws IOException {
-        String query = "apple";
-        String languageTo = FanyiLang.ZH;
+    public BaiduTranslateResult invoke(String query, String languageTo) {
         BaiduTranslateFields fields
                 = new BaiduTranslateFields(query, languageTo, secretInfo);
-        System.out.println(fields);
         FormBody formBody = new FormBody.Builder()
-                .add("q", fields.getEncodeQuery())
+//                .add("q", fields.getEncodeQuery())
+                .add("q", fields.getQ())
                 .add("from", fields.getFrom())
                 .add("to", fields.getTo())
                 .add("appid", fields.getAppid())
@@ -45,7 +48,7 @@ public class PostToBaiduFanyi {
                 .add("sign", fields.md5Sign())
                 .build();
         Request request = new Request.Builder()
-                .url("http://api.fanyi.baidu.com/api/trans/vip/translate")
+                .url(baiduTranslatUrl)
                 .post(formBody)
                 .build();
         try (Response response = client.newCall(request).execute()) {
@@ -53,17 +56,64 @@ public class PostToBaiduFanyi {
                 throw new IOException("Unexpectd code " + response);
             }
 
-            System.out.println();
-            String result = response.body().string();
+            BaiduTranslateResult result
+                    = JSON.parseObject(response.body().string(), new TypeReference<BaiduTranslateResult>(){});
 
-            System.out.println(result);
+//            System.out.println(result);
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        return null;
+    }
+
+    public void run() {
+
+        BaiduTranslateResult china = invoke("中国", FanyiLang.EN);
+        System.out.println(china);
+
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        BaiduTranslateResult apple = invoke("apple", FanyiLang.ZH);
+        System.out.println(apple);
+
+//        String query = "apple";
+//        String languageTo = FanyiLang.ZH;
+//        BaiduTranslateFields fields
+//                = new BaiduTranslateFields(query, languageTo, secretInfo);
+//        System.out.println(fields);
+//        FormBody formBody = new FormBody.Builder()
+//                .add("q", fields.getEncodeQuery())
+//                .add("from", fields.getFrom())
+//                .add("to", fields.getTo())
+//                .add("appid", fields.getAppid())
+//                .add("salt", fields.getSalt())
+//                .add("sign", fields.md5Sign())
+//                .build();
+//        Request request = new Request.Builder()
+//                .url("http://api.fanyi.baidu.com/api/trans/vip/translate")
+//                .post(formBody)
+//                .build();
+//        try (Response response = client.newCall(request).execute()) {
+//            if (!response.isSuccessful()) {
+//                throw new IOException("Unexpectd code " + response);
+//            }
+//
+//            BaiduTranslateResult result
+//                    = JSON.parseObject(response.body().string(), new TypeReference<BaiduTranslateResult>(){});
+//
+//            System.out.println(result);
+//        }
 
     }
 
     public void destroy() {
-        client.dispatcher().executorService().shutdown();   //清除并关闭线程池
-        client.connectionPool().evictAll();                 //清除并关闭连接池
+        ClientUtils.destroy();
     }
 
     public static void main(String[] args) throws IOException {
