@@ -15,6 +15,11 @@ import java.util.Timer;
  *
  * 搭建 server 的方式参考：
  * https://github.com/juedui0769/StudyNotes2018/blob/master/129_Server_Moco.md
+ *
+ * 2019年2月25日18:00:37
+ * 这个类写的没什么价值，我再回顾时，一脸懵逼！
+ *      - 说明：我对这个知识点不熟悉
+ *      - 当时编写的样例不够简洁易懂
  */
 public class PostToAServer {
 

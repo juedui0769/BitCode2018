@@ -10,9 +10,12 @@ import java.util.List;
 /**
  * 2019年2月25日11:04:08
  * 使用`main`方法生成的常量类。
- * "D:\\wxg_test\\baidu\\lang.txt" 是从 http://api.fanyi.baidu.com/api/trans/product/apidoc 获取的
+ * "D:\\wxg_test\\baidu\\lang.txt"
+ *      是从 http://api.fanyi.baidu.com/api/trans/product/apidoc 获取的
  */
 public final class FanyiLang {
+
+    public static final String AUTO = "auto";
 
     public static final String ZH = "zh"; // 中文
 

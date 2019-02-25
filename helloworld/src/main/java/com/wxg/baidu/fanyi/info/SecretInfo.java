@@ -2,10 +2,13 @@ package com.wxg.baidu.fanyi.info;
 
 /**
  * 百度翻译API，申请信息，包含APPID和密钥
+ *
+ * 2019年2月25日13:18:11，字段添加上了`transient`关键字
+ *
  */
 public class SecretInfo {
-    private String appId;
-    private String secretKey;
+    private transient String appId;
+    private transient String secretKey;
 
     public String getAppId() {
         return appId;
