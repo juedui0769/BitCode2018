@@ -15,6 +15,7 @@
         <module>localTest</module>
         <module>mybatis-plus</module>
         <module>JavaConcurrency</module>
+        <module>NettyStudy</module>
     </modules>
 
     <properties>
