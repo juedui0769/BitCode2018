@@ -13,6 +13,9 @@ import io.netty.util.concurrent.MultithreadEventExecutorGroup;
  * {@link com.google.common.collect.Maps}
  * {@link com.jfinal.core.JFinal}
  * {@link io.netty.util.concurrent.ThreadPerTaskExecutor}
+ * {@link io.netty.bootstrap.ServerBootstrap}
+ * {@link io.netty.bootstrap.AbstractBootstrap#channel(Class)}
+ * {@link io.netty.channel.ReflectiveChannelFactory}
  */
 public class FirstLink {
     public static void main(String[] args) {
