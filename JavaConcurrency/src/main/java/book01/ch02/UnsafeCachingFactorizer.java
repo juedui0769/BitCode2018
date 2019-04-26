@@ -1,5 +1,7 @@
 package book01.ch02;
 
+import net.jcip.annotations.NotThreadSafe;
+
 import javax.servlet.*;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -15,6 +17,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * <p>当在不变性条件中涉及多个变量时，各个变量之间并不是彼此独立的，而是某个变量的值会对其他变量的值产生约束。</p>
  * <p>因此，当更新某一个变量时，需要在同一个原子操作中对其他变量同时进行更新。</p>
  */
+@NotThreadSafe
 public class UnsafeCachingFactorizer implements Servlet {
 
     private final AtomicReference<BigInteger> lastNumber
