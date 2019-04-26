@@ -18,6 +18,7 @@
         <module>NettyStudy</module>
         <module>interview</module>
         <module>webservice-demo</module>
+        <module>sboot-springmvc</module>
     </modules>
 
     <properties>
