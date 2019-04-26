@@ -25,6 +25,12 @@
 `jcip-annotations` 了解一下！
 
 
+### 2.3.2 重入
+
+> 在平安评级时被问到过: synchorinzed 是否可'重入'？
+
+
+
 
 
 
