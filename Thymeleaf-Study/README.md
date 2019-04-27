@@ -40,7 +40,103 @@ But Thymeleaf 3.0 includes a series of improvements that can make Thymeleaf trul
 -------------
 
 <https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html>
-有PDF下载
+有PDF下载, 才发现我之前下载过，PC和笔记本上都有一个"unsingthymeleaf.pdf"文件。
+之前应该是阅读到第`3`章了，但是，我没有一点印象，现在又从第一章开始阅读。
+
+## usingthymeleaf
+
+### 1 Introducing Thymeleaf
+
+1.1 What is Thymeleaf?
+
+1.2 What kind of templates can Thymeleaf process?
+
+1.3 Dialects: The Standard Dialect
+
+> 第一章就是对`Thymeleaf`的综合介绍。告诉Thymeleaf能做什么，可以处理哪些模板(哪些类型的文件:html,xml,text,js,css,raw)，
+以及`Dialects`，这个后文应该会详细介绍的。
+
+### 2 The Good Thymes Virtual Grocery
+
+The Good Thymes Virtual Grocery : 百度、腾讯，都翻译不出来。
+
+[grocery](https://fanyi.baidu.com/#en/zh/grocery) : 食品杂货店(在美国英语中grocery store常用以指supermarket);食品杂货
+
+文档在这里以一个食品杂货店为例引出`Thymeleaf`的使用。
+
+2.1 A website for a grocery
+
+2.2 Creating and configuring the Template Engine
+- The Template Resolver
+- The Template Engine
+
+### 3 Using Texts
+
+#### 3.1 A multi-language welcome
+
+```xml
+<p th:text="#{home.welcome}">Welcome to our grocery store!</p>
+
+<p data-th-text="#{home.welcome}">Welcome to our grocery store!</p>
+```
+
+建议使用`th:*`,而不是`data-`,因为`th:*`可以用在`XML`,`TEXT`...任何Thymeleaf支持的模式中,而`data-`只能用在`HTML`模式中。
+
+国际化支持: standard message resolver 会在同目录下寻找`.properties`文件, 
+比如, 针对`/WEB-INF/templates/home.html`, 会寻找同目录下的
+- `/WEB-INF/templates/home_en.properties` for English texts.
+- `/WEB-INF/templates/home_es.properties` for Spanish language texts.
+- `/WEB-INF/templates/home.properties` for default texts (if the locale is not matched).
+
+Contexts
+- `${x}` will return a varialbe `x` stored into the Thymeleaf context or as a *request* attribute.
+- `${param.x}` will return a request parameter called `x` (which might be multivalued).
+- `${session.x}` will return a session attribute called `x`.
+- `${application.x}` will return a servlet context attribute called `x`.
+
+#### 3.2 More on texts and variables
+
+**Unescaped Text**
+
+`th:utext` for "unescaped text"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
