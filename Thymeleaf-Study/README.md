@@ -100,15 +100,62 @@ Contexts
 
 `th:utext` for "unescaped text"
 
+**Using and displaying variables**
 
+```xml
+<body>
+    <p th:utext="#{home.welcome}">Welcome to our grocery store!</p>
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+</body>
+```
 
+注意！ `#{}` , `${}`
+- `#{}` : message expressions
+- `${}` : variable expressions
 
+The `${today}` expression simply means "get the variable called today", but these expressions could be more 
+complex (like `${user.name}` for "get the variable called user, and call its `getName()` method").
 
+### 4 Standard Expression Syntax
 
+Simple expressions: 
+- Variable Expressions: `${...}`
+- Selection Variable Expressions: `*{...}`
+- Message Expressions: `#{...}`
+- Link URL Expressions: `@{...}`
+- Fragment Expressions: `~{...}`
 
+Text operations:
+- String concatenation: `+`
+- Literal substitutions: `|The name is ${name}|`
 
+Arithmetic operations:
+- Binary operations: `+, -, *, /, %`
+- Minus sign (unary operator): `-`
 
+Boolean operations:
+- Binary operators: `and`, `or`
+- Boolean negation (unary operator): `!`, `not`
 
+Comparisons and equality:
+- Comparators: `<, >, <=, >=` (`gt, lt, ge, le`)
+- Equality operators: `==, !=` (`eq, ne`)
+
+Conditional operators:
+- if-then: `(if) ? (then)`
+- if-then-else: `(if) ? (then) : (else)`
+- Default: `(value) ?: (defaultvalue)`
+
+Special tokens:
+- No-Operation: `_`
+
+All these features can be combined and nested:
+
+```
+'User is of type ' + (${user.isAdmin()} ? 'Administrator' : (${user.type} ?: 'Unknown'))
+```
+
+#### 4.1 Messages
 
 
 
