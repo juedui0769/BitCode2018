@@ -19,6 +19,7 @@
         <module>interview</module>
         <module>webservice-demo</module>
         <module>sboot-springmvc</module>
+        <module>Thymeleaf-Study</module>
     </modules>
 
     <properties>
