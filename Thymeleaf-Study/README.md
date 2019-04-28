@@ -317,6 +317,32 @@ Server root relative URLs
 </tr>
 ```
 
+```xml
+<tr th:class="${row.even}? (${row.first}? 'first' : 'even') : 'odd'">
+    ...
+</tr>
+```
+
+#### 4.12 Default expressions (Elvis operator)
+
+
+#### 4.13 The No-Operation token
+
+```xml
+<span th:text="${user.name} ?: 'no user authenticated'">...</span>
+
+<span th:text="${user.name} ?: _">no user authenticated</span>
+```
+
+#### 4.14 Data Conversion / Formatting
+
+`${{...}}`, `*{{...}}`
+
+> 这里没明白，似乎得继承接口，做些处理，让Thymeleaf来调用。
+
+#### 4.15 Preprocessing
+
+
 
 
 
