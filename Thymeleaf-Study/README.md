@@ -157,6 +157,165 @@ All these features can be combined and nested:
 
 #### 4.1 Messages
 
+在message中引入动态值
+
+```xml
+<p th:utext="#{home.welcome(${session.user.name})}">
+Welcome to our grocery store, Sebastian Pepper!
+</p>
+
+<p th:utext="#{${welcomeMsgKey}(${session.user.name})}">
+Welcome to our grocery store, Sebastian Pepper!
+</p>
+```
+
+#### 4.2 Variables
+
+```
+# 这跟JS差不多,访问对象的属性,实际调用属性的getter方法,也可以使用`[]`代替`.`
+${person.father.name}
+${person['father']['name']}
+
+# map
+${countriesByCode.ES}
+${personsByName['Stephen Zucchini'].age}
+
+# arrays, collections
+${personArray[0].name}
+
+# 也可以调用方法,可以传递参数
+${person.createCompleteName()}
+${person.createCompleteNameWithSeparator('-')}
+```
+
+Expression Basic Objects
+- `#ctx` : the context object.
+- `#vars` : the context variables.
+- `#locale` : the context locale.
+- `#request` : HttpServletRequest
+- `#response` : HttpServletResponse
+- `#session` : HttpSession
+- `#servletContext` ServletContext
+
+> 附录A 有更详细的清单
+
+Expression Utility Objects
+- `#execInfo`:
+- `#message`:
+- `#uris`:
+- `#conversions`:
+- `#dates`:
+- `#calendars`:
+- `#numbers`:
+- `#strings`:
+- `#objects`:
+- `#bools`:
+- `#arrays`:
+- `#lists`:
+- `#sets`:
+- `#maps`:
+- `#aggregates`:
+- `#ids`:
+
+> 附录B 有详细介绍
+
+Reformatting dates in our home page
+
+```html
+ctx.setVariable("today", Calendar.getInstance());
+
+<p>
+  Today is: <span th:text="${#calendars.format(today, 'dd MMMM yyyy')}">13 May 2011</span>
+</p>
+```
+
+#### 4.3 Expressions on selections (asterisk syntax)
+
+```xml
+<div th:object="${session.user}">
+    <p>Name: <span th:text="${#object.firstName}">Sebastian</span>.</p>
+    <p>Surname: <span th:text="${session.user.lastName}">Pepper</span>.</p>
+    <p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
+</div>
+```
+
+- 因为指定`th:object="${session.user}"`,所以`*{nationality}`就代表`${session.user.nationality}`
+- 也可以加上`${#object.}`前缀 -> `${#object.nationality}`
+- `${session.user.nationality}` 也可以写成 `*{session.user.nationality}`
+
+#### 4.4 Link URLs
+
+```xml
+<!-- Will produce 'http://localhost:8080/gtvg/order/details?orderId=3' (plus rewriting) -->
+<a href="details.html"
+    th:href="@{http://localhost:8080/gtvg/order/details(orderId=${o.id})}">view</a>
+<!-- Will produce '/gtvg/order/details?orderId=3' (plus rewriting) -->
+<a href="details.html" th:href="@{/order/details(orderId=${o.id})}">view</a>
+<!-- Will produce '/gtvg/order/3/details' (plus rewriting) -->
+<a href="details.html" th:href="@{/order/{orderId}/details(orderId=${o.id})}">view</a>
+```
+
+A menu for our home page
+
+Server root relative URLs
+
+```xml
+@{~/path/to/something}
+```
+
+#### 4.5 Fragments
+
+
+```xml
+<div th:insert="~{commons :: main}">...</div>
+
+<div th:with="frag=~{footer :: #main/text()}">
+    <p th:insert="${frag}">
+</div>
+```
+
+#### 4.6 Literals
+
+- String 使用`'`包括的内容。
+- number 可以做算术运算
+- boolean 注意 `==` 的放置位置
+    - `<div th:if="${user.isAdmin()} == false"> ...`
+    - `<div th:if="${user.isAdmin() == false}"> ...`
+- null
+
+#### 4.7 Appending texts
+
+```xml
+<span th:text="'The name of the user is ' + ${user.name}">
+```
+
+#### 4.8 Literal substitutions
+
+```xml
+<span th:text="|Welcome to our application, ${user.name}!|">
+
+<span th:text="'Welcome to our application, ' + ${user.name} + '!'">
+```
+
+以上两句是相等的。
+
+> Only variable/message expressions (`${...}`, `*{...}`, `#{...}`) are allowed inside `|...|` literal substitutions.
+
+#### 4.9 Arithmetic operations
+
+
+#### 4.10 Comparators and Equality
+
+- gt (`>`)
+- gt, lt, ge, le, not, eq, neq/ne
+
+#### 4.11 Conditional expressions
+
+```xml
+<tr th:class="${row.even}? 'even' : 'odd'">
+    ...
+</tr>
+```
 
 
 
