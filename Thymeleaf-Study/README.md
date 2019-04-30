@@ -342,6 +342,68 @@ Server root relative URLs
 
 #### 4.15 Preprocessing
 
+这个没看懂。
+
+### 5 Setting Attribute Values
+
+#### 5.1 Setting the value of any attribute
+
+```
+th:attr
+
+<input type="submit" value="Subscribe!" th:attr="value=#{subscribe.submit}"/>
+```
+
+也可以设置多个属性，例子如下：
+
+```xml
+<img src="../../images/gtvglogo.png"
+    th:attr="src=@{/images/gtvglogo.png},title=#{logo},alt=#{logo}" />
+
+<img src="/gtgv/images/gtvglogo.png" title="Logo de Good Thymes" 
+    alt="Logo de Good Thymes" />
+```
+
+#### 5.2 Setting value to specific attributes
+
+这一节将所有的 HTML5 attribute 都列举出来了
+
+#### 5.3 Setting more than one value at a time
+
+- `th:alt-title`: will set `alt` and `title`.
+- `th:lang-xmllang`: will set `lang` and `xml:lang`.
+
+#### 5.4 Appending and prepending
+
+- `th:attrappend`: 添加后缀
+- `th:attrprepend`: 添加前缀
+- `th:classappend`: 
+- `th:styleappend`: 添加样式
+
+```xml
+<input type="button" value="Do it!" class="btn" th:attrappend="class=${' ' + cssStyle}" />
+
+<tr th:each="prod : ${prods}" class="row" th:classappend="${prodStat.odd}? 'odd'">
+```
+
+#### 5.5 Fixed-value boolean attributes
+
+
+> 边阅读文档边做记录很容易疲惫，进度会非常缓慢。所以我决定先不做笔记，先快速阅读一遍文档。
+>
+> 目前 8.3 Flexible layouts: beyond mere ... -> Advanced conditional insertion of fragments
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
