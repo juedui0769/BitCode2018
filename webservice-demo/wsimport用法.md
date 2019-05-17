@@ -40,7 +40,7 @@
   -XadditionalHeaders              映射标头不绑定到请求或响应消息不绑定到
                                    Java 方法参数
   -Xauthfile                       用于传送以下格式的授权信息的文件:
-                                   http://username:password@example.org/stock?wsdl
+                                   http://username:password@com.example.org/stock?wsdl
   -Xdebug                          输出调试信息
   -Xno-addressing-databinding      允许 W3C EndpointReferenceType 到 Java 的绑定
   -Xnocompile                      不编译生成的 Java 文件

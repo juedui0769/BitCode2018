@@ -20,6 +20,7 @@
         <module>webservice-demo</module>
         <module>sboot-springmvc</module>
         <module>Thymeleaf-Study</module>
+        <module>mybatis-pure-study</module>
     </modules>
 
     <properties>
