@@ -21,6 +21,7 @@
         <module>sboot-springmvc</module>
         <module>Thymeleaf-Study</module>
         <module>mybatis-pure-study</module>
+        <module>lucene-study</module>
     </modules>
 
     <properties>
