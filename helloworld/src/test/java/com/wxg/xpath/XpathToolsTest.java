@@ -2,6 +2,7 @@ package com.wxg.xpath;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -80,9 +81,14 @@ public class XpathToolsTest {
         String[] fixedArr = new String[arrSize];
         for (String originStr : arr) {
             matcher.reset(originStr);
-            for (int i = 0; matcher.find() && i < arrSize; i++) {
+            int countI = 0;
+            for (int i = 0; matcher.find() && i < arrSize; i++, countI++) {
                 groupStr = matcher.group(1) == null ? matcher.group(2) : matcher.group(1);
+                fixedArr[countI] = groupStr;
+                originStr = originStr.replaceFirst(groupStr, String.format("{%d}", i));
             }
+            System.out.println("originStr : " + originStr);
+            System.out.println("fixedArr : " + Arrays.toString(fixedArr));
 //            while (matcher.find()) {
 //                groupStr = matcher.group(1) == null ? matcher.group(2) : matcher.group(1);
 ////                System.out.println(matcher.group(1));
@@ -90,7 +96,14 @@ public class XpathToolsTest {
 //                matcher.replaceFirst("");
 //                originStr = originStr.replace(groupStr, PREFIX + groupStr);
 //            }
-            System.out.println(originStr);
+        }
+    }
+
+
+    @Test
+    public void test03() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println(String.format("{%d}", i));
         }
     }
 }
