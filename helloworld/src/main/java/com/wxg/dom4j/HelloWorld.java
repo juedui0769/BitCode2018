@@ -12,7 +12,9 @@ import org.junit.Test;
 
 import java.io.File;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HelloWorld {
 
@@ -48,4 +50,73 @@ public class HelloWorld {
             System.out.println("dom4j读取xml出错, file=" + pomFile);
         }
     }
+
+    @Test
+    public void test02() {
+        URL url = Resources.getResource("student.xml");
+        SAXReader reader = new SAXReader();
+        try {
+            Document doc = reader.read(url);
+            System.out.println(doc.selectSingleNode("//name"));
+            List<Node> nodes = doc.selectNodes("//name");
+            if (nodes != null) {
+                for (Node n : nodes) {
+                    System.out.println(n.getText());
+                }
+            }
+        } catch (DocumentException e) {
+            System.out.println("dom4j读取xml出错, file=" + url.getPath());
+        }
+    }
+
+    /**
+     * https://blog.csdn.net/story_xia/article/details/89527726
+     */
+    @Test
+    public void test03() {
+        URL url = Resources.getResource("helloworld_pom.xml");
+        SAXReader reader = new SAXReader();
+        Map<String, String> map = new HashMap<>();
+        map.put("my", "http://maven.apache.org/POM/4.0.0");
+        reader.getDocumentFactory().setXPathNamespaceURIs(map);
+        try {
+            Document doc = reader.read(url);
+            System.out.println(doc.selectSingleNode("//my:version"));
+            List<Node> nodes = doc.selectNodes("//my:version");
+            if (nodes != null) {
+                for (Node n : nodes) {
+                    System.out.println(n.getText());
+                }
+            }
+        } catch (DocumentException e) {
+            System.out.println("dom4j读取xml出错, file=" + url.getPath());
+        }
+    }
+
+    @Test
+    public void test04() {
+        URL url = Resources.getResource("helloworld_pom.xml");
+        SAXReader reader = new SAXReader();
+        Map<String, String> map = new HashMap<>();
+        map.put("my", "http://maven.apache.org/POM/4.0.0");
+        reader.getDocumentFactory().setXPathNamespaceURIs(map);
+        try {
+            Document doc = reader.read(url);
+            System.out.println(doc.selectSingleNode("//my:version"));
+            List<Node> nodes = doc.selectNodes("//my:version");
+            if (nodes != null) {
+                for (Node n : nodes) {
+                    System.out.println(n.getText());
+                }
+            }
+        } catch (DocumentException e) {
+            System.out.println("dom4j读取xml出错, file=" + url.getPath());
+        }
+    }
+
+    private String wrap(String originStr) {
+        return null;
+    }
+
+
 }
