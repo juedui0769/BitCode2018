@@ -114,8 +114,78 @@ public class HelloWorld {
         }
     }
 
-    private String wrap(String originStr) {
-        return null;
+    /**
+     * attr 不受 namespace 影响
+     */
+    @Test
+    public void test05() {
+        URL url = Resources.getResource("helloworld_pom.xml");
+        SAXReader reader = new SAXReader();
+//        Map<String, String> map = new HashMap<>();
+//        map.put("my", "http://maven.apache.org/POM/4.0.0");
+//        reader.getDocumentFactory().setXPathNamespaceURIs(map);
+        try {
+            Document doc = reader.read(url);
+            Node nodeAttr = doc.selectSingleNode("//@id");
+            if (null != nodeAttr) {
+                System.out.println("nodeAttr : " + nodeAttr.getText());
+            }
+        } catch (DocumentException e) {
+            System.out.println("dom4j读取xml出错, file=" + url.getPath());
+        }
+    }
+
+    /**
+     * 只能拿到某个元素的所有属性
+     * `doc`应该是root元素的父亲吧？ 它没有属性
+     * 如果拿到 `<dependency id="junit">` 那么可以获得它的属性
+     */
+    @Test
+    public void test06() {
+        URL url = Resources.getResource("helloworld_pom.xml");
+        SAXReader reader = new SAXReader();
+//        Map<String, String> map = new HashMap<>();
+//        map.put("my", "http://maven.apache.org/POM/4.0.0");
+//        reader.getDocumentFactory().setXPathNamespaceURIs(map);
+        try {
+            Document doc = reader.read(url);
+            List<Node> nodeList = doc.selectNodes("@*");
+            if (null != nodeList) {
+                System.out.println(nodeList.size());
+                System.out.println("--------------");
+                for (Node n : nodeList) {
+                    System.out.println(n.getName() + " : " + n.getText());
+                }
+            }
+        } catch (DocumentException e) {
+            System.out.println("dom4j读取xml出错, file=" + url.getPath());
+        }
+    }
+
+    /**
+     * 输出结果有很多空白元素
+     * 只能拿到某个元素的`子`元素，不能拿到`孙`元素
+     */
+    @Test
+    public void test07() {
+        URL url = Resources.getResource("helloworld_pom.xml");
+        SAXReader reader = new SAXReader();
+        Map<String, String> map = new HashMap<>();
+        map.put("my", "http://maven.apache.org/POM/4.0.0");
+        reader.getDocumentFactory().setXPathNamespaceURIs(map);
+        try {
+            Document doc = reader.read(url);
+            List<Node> nodeList = doc.selectNodes("//my:project/*");
+            if (null != nodeList) {
+                System.out.println(nodeList.size());
+                System.out.println("--------------");
+                for (Node n : nodeList) {
+                    System.out.println(n.getName() + " : " + n.getText());
+                }
+            }
+        } catch (DocumentException e) {
+            System.out.println("dom4j读取xml出错, file=" + url.getPath());
+        }
     }
 
 
