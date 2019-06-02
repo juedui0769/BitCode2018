@@ -1,5 +1,7 @@
 package com.wxg.socket.old;
 
+import com.wxg.util.CommonConstants;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,7 +16,7 @@ import java.net.Socket;
 public class Server {
     public static void main(String[] args) throws IOException {
         // 创建一个`ServerSocket`监听端口`8080`
-        ServerSocket server = new ServerSocket(8080);
+        ServerSocket server = new ServerSocket(CommonConstants.PROT);
         // 等待请求
         Socket socket = server.accept();
         // 接收到请求后使用`socket`进行通信

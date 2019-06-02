@@ -1,5 +1,7 @@
 package com.wxg.socket.nio;
 
+import com.wxg.util.CommonConstants;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -13,12 +15,15 @@ import java.util.Iterator;
 /**
  * 2019年1月3日15:22:48
  * from 《看透Spring MVC: 源代码分析与实践》， 4.2
+ * <p>
+ * 今天（2019年6月2日18:45:03）重温此段代码，发现这里只处理了"accept"和"read"没有处理"write"，
+ * 如果要处理"write"应该在handler中添加一个处理write操作的方法。
  */
 public class NioServer {
     public static void main(String[] args) throws IOException {
         // 创建`ServerSocketChannel`，监听`8080`端口
         ServerSocketChannel ssc = ServerSocketChannel.open();
-        ssc.socket().bind(new InetSocketAddress(8008));
+        ssc.socket().bind(new InetSocketAddress(CommonConstants.PROT));
         // 设置为非阻塞模式
         ssc.configureBlocking(false);
         // 为`ServerSocketChannel`注册选择器

@@ -1,5 +1,7 @@
 package com.wxg.socket.old;
 
+import com.wxg.util.CommonConstants;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,7 +12,7 @@ public class Client {
     public static void main(String[] args) throws IOException {
         String msg = "Client Data";
         // 创建一个`socket`，跟本机的`8080`端口连接
-        Socket socket = new Socket("127.0.0.1", 8080);
+        Socket socket = new Socket("127.0.0.1", CommonConstants.PROT);
         //
         PrintWriter pw = new PrintWriter(socket.getOutputStream());
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
