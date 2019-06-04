@@ -1,5 +1,7 @@
 package com.wxg.socket.http;
 
+import com.wxg.util.CommonConstants;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -14,11 +16,14 @@ import java.util.Iterator;
 /**
  * 2019年1月3日16:44:55
  * from : 看透Spring MVC: 源代码分析与实践》，第5章
+ * <p>
+ * http:localhost:8080
+ * </p>
  */
 public class HttpServer {
     public static void main(String[] args) throws IOException {
         ServerSocketChannel ssc = ServerSocketChannel.open();
-        ssc.socket().bind(new InetSocketAddress(8080));
+        ssc.socket().bind(new InetSocketAddress(CommonConstants.PROT));
 
         ssc.configureBlocking(false);
 
