@@ -22,6 +22,7 @@
         <module>Thymeleaf-Study</module>
         <module>mybatis-pure-study</module>
         <module>lucene-study</module>
+        <module>pure-spring</module>
     </modules>
 
     <properties>
