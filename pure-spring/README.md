@@ -33,6 +33,16 @@
     </dependency>
 ```
 
+### logback-ext-spring
+
+`ch.qos.logback.ext.spring`
+
+`ch.qos.logback.ext.spring.LogbackConfigurer`
+
+### jcl-over-slf4j
+
+`org.apache.commons.logging.impl.SLF4JLocationAwareLog`
+
 
 
 
