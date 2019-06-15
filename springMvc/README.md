@@ -29,6 +29,27 @@
 ### 第2章 常见协议和标准
 
 
+### 第3章 DNS的设置
+
+
+### 第4章 Java中的Socket的用法
+
+"com.wxg.socket.old.Server"
+
+"com.wxg.socket.nio.NioServer"
+
+### 第5章 自动动手实现HTTP协议
+
+"com.wxg.socket.http.HttpServer"
+
+### 第6章 详解Servlet
+
+`Servlet`是`Server + Applet`的缩写，表示一个服务器应用。
+
+> 还是看原文吧，内容不多，没法精简并写在这里。
+
+### 第7章 Tomcat分析
+
 
 
 ### 第8章 Spring MVC之初体验
