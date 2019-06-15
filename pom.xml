@@ -23,6 +23,7 @@
         <module>mybatis-pure-study</module>
         <module>lucene-study</module>
         <module>pure-spring</module>
+        <module>logback-study</module>
     </modules>
 
     <properties>

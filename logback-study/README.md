@@ -1,0 +1,17 @@
+
+官网 : <https://logback.qos.ch/>
+
+参考 <https://www.cnblogs.com/warking/p/5710303.html>
+
+<https://www.cnblogs.com/lixuwu/p/5804793.html>
+
+#### importnew
+
+<http://www.importnew.com/28541.html>
+
+这篇文章是完整看完了的，感觉还不错，对logback有了感性的认识。
+
+> 现在欠缺的是实际配置。比如：应对某个问题，想追踪某个类或包的日志，
+> 如何在logback中配置以达到目的……
+
+
