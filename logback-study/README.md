@@ -15,3 +15,32 @@
 > 如何在logback中配置以达到目的……
 
 
+### spring, logback
+
+参考 <https://blog.csdn.net/zhanglf02/article/details/77849025>
+
+```xml
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.3</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.logback-extensions</groupId>
+        <artifactId>logback-ext-spring</artifactId>
+        <version>0.1.4</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>1.7.25</version>
+    </dependency>
+```
+
+
+
+
+
+
