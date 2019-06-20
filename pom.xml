@@ -24,6 +24,7 @@
         <module>lucene-study</module>
         <module>pure-spring</module>
         <module>logback-study</module>
+        <module>h2database-study</module>
     </modules>
 
     <properties>
