@@ -25,6 +25,7 @@
         <module>pure-spring</module>
         <module>logback-study</module>
         <module>h2database-study</module>
+        <module>jsoup</module>
     </modules>
 
     <properties>
