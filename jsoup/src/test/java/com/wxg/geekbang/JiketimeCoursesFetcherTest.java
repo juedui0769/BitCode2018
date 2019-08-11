@@ -14,9 +14,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class HelloTest {
+public class JiketimeCoursesFetcherTest {
 
-    final Logger logger = LoggerFactory.getLogger(HelloTest.class);
+    final Logger logger = LoggerFactory.getLogger(JiketimeCoursesFetcherTest.class);
 
     final static String FILENAME = "D:\\02_webhtml\\极客时间-提升技术认知.html";
     final static String UTF_8 = "UTF-8";
