@@ -26,6 +26,7 @@
         <module>logback-study</module>
         <module>h2database-study</module>
         <module>jsoup</module>
+        <module>JavaNIO</module>
     </modules>
 
     <properties>
