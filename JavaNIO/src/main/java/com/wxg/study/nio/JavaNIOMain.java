@@ -12,6 +12,8 @@ import java.nio.channels.Channel;
  * {@link java.nio.Buffer}
  * <p>
  * {@link java.nio.channels.Selector}
+ * <p>
+ * {@link java.nio.channels.SelectionKey}
  */
 public class JavaNIOMain {
 
