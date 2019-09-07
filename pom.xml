@@ -28,6 +28,7 @@
         <module>jsoup</module>
         <module>JavaNIO</module>
         <module>CoreJava09</module>
+        <module>Algorithm</module>
     </modules>
 
     <properties>
